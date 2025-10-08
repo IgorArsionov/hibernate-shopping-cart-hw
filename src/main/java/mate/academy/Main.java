@@ -68,12 +68,12 @@ public class Main {
         userService.add(user);
 
         User igorFromDb = userService.findByEmail(user.getEmail()).get();
-        MovieSession movieSessionFromDb = movieSessionService.get(1L);
+        MovieSession movieSessionFromDb = movieSessionService.get(tomorrowMovieSession.getId());
         ShoppingCartService shoppingCartService =
                 (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
         shoppingCartService.registerNewShoppingCart(igorFromDb);
-        ShoppingCart cartByUser = shoppingCartService.getByUser(igorFromDb);
         shoppingCartService.addSession(movieSessionFromDb, igorFromDb);
+        ShoppingCart cartByUser = shoppingCartService.getByUser(igorFromDb);
         shoppingCartService.clear(cartByUser);
 
     }
